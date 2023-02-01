@@ -4,21 +4,21 @@ import axios from '../../../utils/axios';
 const initialState = {
 	user: null,
 	token: null,
-	isLoading: null,
+	isLoading: false,
 	status: null,
 };
 
 export const registerUser = createAsyncThunk(
 	'auth/registerUser',
-	async (username, password) => {
+	async ({username, password}) => {
 		try {
 			const { data } = await axios.post('/auth/register', {
 				username,
 				password,
 			});
-			if (data.token) {
-				window.localStorage.setItem('toket', data.token);
-			}
+			// if (data.token) {
+			// 	window.localStorage.setItem('toket', data.token);
+			// }
 			return data;
 		} catch (error) {
 			console.log(error);

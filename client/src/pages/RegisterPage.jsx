@@ -5,7 +5,7 @@ import { registerUser } from '../redux/features/auth/authSlice';
 export const RegisterPage = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	const handleSubmit = () => {
 		try {
@@ -19,30 +19,34 @@ export const RegisterPage = () => {
 
 	return (
 		<form onSubmit={(e) => e.preventDefault()} className="">
-			<h1>Регистрация пользователя</h1>
-			<label>
-			Username:
+			<h1 className="">Регистрация</h1>
+			<label className="">
+				Username:
 				<input
 					type="text"
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
-					placeholder="username"
+					placeholder="Username"
 					className=""
 				/>
 			</label>
-			<label>
+
+			<label className="">
 				Password:
 				<input
-					type="Password"
+					type="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					placeholder="Password"
 					className=""
 				/>
 			</label>
-			<button type="submit" onClick={handleSubmit}>
-				зарегистрировать
-			</button>
+
+			<div className="">
+				<button type="submit" onClick={handleSubmit} className="">
+					Подтвердить
+				</button>
+			</div>
 		</form>
 	);
 };
