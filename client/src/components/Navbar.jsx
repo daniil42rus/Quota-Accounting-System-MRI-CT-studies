@@ -1,16 +1,26 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkIsAuth, logout } from '../redux/features/auth/authSlice';
+import { toast } from 'react-toastify';
 
 export const Navbar = () => {
-	const inAuth = false;
+	const isAuth = useSelector(checkIsAuth);
+	const dispatch = useDispatch();
 
 	const activeStyles = {
 		color: 'red',
 	};
 
+	const logoutHandler = () => {
+		dispatch(logout());
+		window.localStorage.removeItem('token');
+		toast('Вы вышли из системы');
+	};
+
 	return (
 		<div className="">
-			{inAuth && (
+			{isAuth && (
 				<ul className="">
 					<li className="">
 						<NavLink
@@ -64,6 +74,13 @@ export const Navbar = () => {
 					</li>
 				</ul>
 			)}
+			<div className="">
+				{isAuth ? (
+					<button onClick={logoutHandler}>Выйти</button>
+				) : (
+					<Link to={'/login'}> Войти </Link>
+				)}
+			</div>
 		</div>
 	);
 };

@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/features/auth/authSlice';
+import { toast } from 'react-toastify';
 
 export const RegisterPage = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+
+	const { status } = useSelector((status) => status.auth);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (status) {
+			toast(status);
+		}
+	}, [status]);
 
 	const handleSubmit = () => {
 		try {
 			dispatch(registerUser({ username, password }));
-			setPassword('');
-			setUsername('');
+			// setPassword('');
+			// setUsername('');
 		} catch (error) {
 			console.log(error);
 		}
