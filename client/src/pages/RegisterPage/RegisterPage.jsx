@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { loginUser } from '../redux/features/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
+import './RegisterPage.css';
 
-export const LoginPage = () => {
+
+export const RegisterPage = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
 	const { status } = useSelector((status) => status.auth);
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (status) {
 			toast(status);
 		}
-	}, [status, navigate]);
+	}, [status]);
 
 	const handleSubmit = () => {
 		try {
-			dispatch(loginUser({ username, password }));
+			dispatch(registerUser({ username, password }));
+			setPassword('');
+			setUsername('');
 		} catch (error) {
 			console.log(error);
 		}
@@ -28,8 +30,8 @@ export const LoginPage = () => {
 
 	return (
 		<form onSubmit={(e) => e.preventDefault()} className="">
-			<h1>Авторизация</h1>
-			<label>
+			<h1 className="form-heading">Регистрация</h1>
+			<label className="">
 				Username:
 				<input
 					type="text"
@@ -39,19 +41,23 @@ export const LoginPage = () => {
 					className=""
 				/>
 			</label>
-			<label>
+
+			<label className="">
 				Password:
 				<input
-					type="Password"
+					type="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					placeholder="Password"
 					className=""
 				/>
 			</label>
-			<button type="submit" onClick={handleSubmit}>
-				Войти
-			</button>
+
+			<div className="">
+				<button type="submit" onClick={handleSubmit} className="">
+					Подтвердить
+				</button>
+			</div>
 		</form>
 	);
 };

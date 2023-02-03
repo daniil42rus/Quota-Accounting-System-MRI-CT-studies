@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 // Register user
 export const register = async (req, res) => {
 	try {
-		const { username, password } = req.body;
+		const { username, password, surname, access } = req.body;
 		const isUsed = await User.findOne({ username });
 
 		if (isUsed) {
@@ -20,6 +20,8 @@ export const register = async (req, res) => {
 		const newUser = new User({
 			username,
 			password: hash,
+			surname,
+			access,
 		});
 
 		// const token = jwt.sign(
@@ -74,7 +76,7 @@ export const login = async (req, res) => {
 		res.json({
 			user,
 			token,
-			message: 'Вы вошли в систему.',
+			message: `Вы вошли в систему под пользователем ${user.surname.toLocaleUpperCase()}`,
 		});
 	} catch (error) {
 		res.json({ message: 'Ошибка при авторизации.' });

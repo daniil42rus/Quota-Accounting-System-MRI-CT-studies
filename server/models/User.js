@@ -11,6 +11,13 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+
+		surname: {
+			type: String,
+		},
+		access: {
+			type: String,
+		},
 	},
 	{ timestamps: true }
 );
