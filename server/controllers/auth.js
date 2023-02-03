@@ -76,10 +76,11 @@ export const login = async (req, res) => {
 		res.json({
 			user,
 			token,
-			message: `Вы вошли в систему под пользователем ${user.surname.toLocaleUpperCase()}`,
+			message: `Вы вошли в систему под пользователем ${user.username}`,
 		});
 	} catch (error) {
-		res.json({ message: 'Ошибка при авторизации.' });
+		res.json({ message: `Ошибка при авторизации.` });
+		console.log(error);
 	}
 };
 

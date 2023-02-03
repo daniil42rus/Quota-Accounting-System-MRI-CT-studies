@@ -23,7 +23,7 @@ function App() {
 
 	return (
 		<Layout>
-			{/* {
+			{
 				isAuth ? (
 					<Routes>
 						<Route path="/" element={<MainPage />} />
@@ -37,13 +37,13 @@ function App() {
 						<Route path="*" element={<LoginPage />} />
 					</Routes>
 				)
-			} */}
-			<Routes>
+			}
+			{/* <Routes>
 				<Route path="/" element={<MainPage />} />
 				<Route path="register" element={<RegisterPage />} />
 				<Route path="login" element={<LoginPage />} />
 				<Route path="*" element={<NotFind />} />
-			</Routes>
+			</Routes> */}
 
 			<ToastContainer to position="bottom-right" />
 		</Layout>
