@@ -41,7 +41,7 @@ export const register = async (req, res) => {
 		});
 	} catch (error) {
 		console.log(error);
-		res.json({ message: 'Ошибка при создании пользователя.' });
+		res.json({ message: 'Ошибка при создании пользователя.' + error });
 	}
 };
 
@@ -76,7 +76,7 @@ export const login = async (req, res) => {
 		res.json({
 			user,
 			token,
-			message: `Вы вошли в систему под пользователем ${user.username}`,
+			message: `Вы вошли в систему под пользователем ${user.surname}`,
 		});
 	} catch (error) {
 		res.json({ message: `Ошибка при авторизации.` });
@@ -109,5 +109,23 @@ export const getMe = async (req, res) => {
 		});
 	} catch (error) {
 		res.json({ message: 'Нет доступа.' });
+	}
+};
+
+// Get All userus
+
+export const getAllUsers = async (req, res) => {
+	try {
+		const allUsers = await User.find();
+
+		if (!allUsers) {
+			return res.json({
+				message: 'Пользователей нет.' + allUsers,
+			});
+		}
+
+		res.json({ allUsers });
+	} catch (error) {
+		res.json({ message: 'Что-то пошло не так' });
 	}
 };

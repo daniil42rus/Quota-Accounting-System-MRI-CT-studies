@@ -11,12 +11,13 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-
 		surname: {
 			type: String,
+			required: true,
 		},
 		access: {
 			type: String,
+			required: true,
 		},
 	},
 	{ timestamps: true }

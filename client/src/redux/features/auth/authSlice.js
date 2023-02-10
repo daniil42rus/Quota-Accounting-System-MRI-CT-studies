@@ -6,19 +6,19 @@ const initialState = {
 	token: null,
 	isLoading: false,
 	status: null,
+	allUsers: [],
 };
 
 export const registerUser = createAsyncThunk(
 	'auth/registerUser',
-	async ({ username, password }) => {
+	async ({ username, password, surname, access }) => {
 		try {
 			const { data } = await axios.post('/auth/register', {
 				username,
 				password,
+				surname,
+				access,
 			});
-			// if (data.token) {
-			//     window.localStorage.setItem('token', data.token)
-			// }
 			return data;
 		} catch (error) {
 			console.log(error);
@@ -47,6 +47,15 @@ export const loginUser = createAsyncThunk(
 export const getMe = createAsyncThunk('auth/getMe', async () => {
 	try {
 		const { data } = await axios.get('/auth/me');
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+export const getAllUsers = createAsyncThunk('auth/getAllUsers', async () => {
+	try {
+		const { data } = await axios.get('/auth/register');
 		return data;
 	} catch (error) {
 		console.log(error);
@@ -110,12 +119,24 @@ export const authSlice = createSlice({
 			state.status = action.payload.message;
 			state.isLoading = false;
 		},
+
+		// Получить всех пользователей
+		[getAllUsers.pending]: (state) => {
+			state.isLoading = true;
+		},
+		[getAllUsers.fulfilled]: (state, action) => {
+			state.isLoading = false;
+			state.allUsers = action.payload.allUsers;
+		},
+		[getAllUsers.rejectWithValue]: (state, action) => {
+			state.isLoading = false;
+		},
 	},
 });
 
 export const checkIsAuth = (state) => Boolean(state.auth.token);
 
-export const checkIsAdmin = (state) => state.auth.user;
+export const thisUser = (state) => state.auth.user;
 
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;

@@ -1,0 +1,50 @@
+.list__item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list__item:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.item__container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.name {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.access {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #B3B3B3;
+}
+
+.btn__edit {
+    margin-right: 21px;
+    width: 15px;
+    height: 15px;
+    background: url('../../../svg/edit.svg');
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.btn__delete {
+    width: 15px;
+    height: 15px;
+    background: url('../../../svg/delete.svg');
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

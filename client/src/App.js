@@ -17,8 +17,6 @@ function App() {
 		dispatch(getMe());
 	}, [dispatch]);
 
-	// const isAuth = useSelector(checkIsAuth);
-
 	const isAuth = useSelector(checkIsAuth);
 
 	return (

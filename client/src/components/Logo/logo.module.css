@@ -1,0 +1,11 @@
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 21px;
+}
+
+.logo__heading {
+    padding: 20px;
+    font-weight: 400;
+    font-size: 12px;
+}
