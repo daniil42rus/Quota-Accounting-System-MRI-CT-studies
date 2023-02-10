@@ -6,7 +6,7 @@ const initialState = {
 	token: null,
 	isLoading: false,
 	status: null,
-	allUsers: [],
+	allUsers:null,
 };
 
 export const registerUser = createAsyncThunk(
@@ -61,6 +61,21 @@ export const getAllUsers = createAsyncThunk('auth/getAllUsers', async () => {
 		console.log(error);
 	}
 });
+
+export const removeUser = createAsyncThunk(
+	'auth/register/removeUser',
+	async ({ _id }) => {
+		try {
+			const { data } = await axios.post(`/auth/register/removeUser`, { _id });
+			console.log({_id});
+
+
+			return data;
+		} catch (error) {
+			console.log(error);
+		}
+	}
+);
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -129,6 +144,23 @@ export const authSlice = createSlice({
 			state.allUsers = action.payload.allUsers;
 		},
 		[getAllUsers.rejectWithValue]: (state, action) => {
+			state.isLoading = false;
+		},
+
+		// Удалить пользователя
+		[removeUser.pending]: (state) => {
+			state.isLoading = true;
+		},
+		[removeUser.fulfilled]: (state, action) => {
+			state.isLoading = false;
+
+			// state.allUsers = state.allUsers.filter(
+			// 	(user) => user._id !== action.meta.arg
+			// );
+
+			console.log(state.allUsers);
+		},
+		[removeUser.rejectWithValue]: (state, action) => {
 			state.isLoading = false;
 		},
 	},

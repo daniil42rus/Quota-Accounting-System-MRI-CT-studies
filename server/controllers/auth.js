@@ -129,3 +129,20 @@ export const getAllUsers = async (req, res) => {
 		res.json({ message: 'Что-то пошло не так' });
 	}
 };
+
+// Remove user
+export const removeUser = async (req, res) => {
+	try {
+		const { _id } = req.body;
+
+		const user = await User.findByIdAndDelete({ _id });
+
+		if (!user)
+			return res.json({
+				message: 'Такого пользователя не существует',
+			});
+		res.json(user);
+	} catch (error) {
+		res.json({ message: 'Что то пошло не так.' });
+	}
+};

@@ -33,6 +33,7 @@ export const RegisterPage = () => {
 			setPassword('');
 			setUsername('');
 			setSurname('');
+			
 			document
 				.getElementById('disabled')
 				.removeAttribute('disabled', 'disabled');
@@ -92,7 +93,7 @@ export const RegisterPage = () => {
 							<label className={styles.form__lable}>
 								<span className={styles.form__heading}>Пароль</span>
 								<input
-									type="text"
+									type="password"
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
 									placeholder="********"

@@ -34,7 +34,9 @@ export const Navbar = () => {
 		<div className="">
 			{isAuth && (
 				<header className={style.header}>
-					<Logo />
+					<NavLink to={'/'} href="/" className={style.logo}>
+						<Logo />
+					</NavLink>
 
 					<nav className={style.nav}>
 						<ul className={style.nav__list}>
