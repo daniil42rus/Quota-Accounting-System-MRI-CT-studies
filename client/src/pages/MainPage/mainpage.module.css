@@ -39,32 +39,6 @@
     margin-right: 10px;
 }
 
-/* 
-
-.kt::before, .mrt::before, .open::before {
-    content: ' ';
-    position: absolute;
-    width: 10px;
-    height: 10px;
-
-    align-items: center;
-    right: 0;
-    top: 1px;
-    margin-right: 20px;
-    border-radius: 50%;
-}
-
-.kt::before {
-    background: #B5FFC9;
-}
-
-.mrt::before {
-    background: rgba(254, 227, 85, 0.56);
-}
-
-.open::before {
-    background: #FFB9B9;
-} */
 
 .list__days {
     display: flex;

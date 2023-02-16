@@ -9,8 +9,6 @@ export const MainPage = () => {
 	const clickDay = () => {
 		let newDate = new Date();
 		let days = [];
-		// let daysWeek = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
-		// console.log(daysWeek[newDate.getDay()]);
 
 		days.push(date.toLocaleDateString(newDate.setDate(date.getDate())));
 		days.push(date.toLocaleDateString(newDate.setDate(date.getDate() + 1)));
