@@ -2,7 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-
 import authRoute from './routes/auth.js';
 import authPatient from './routes/addPatient.js';
 
@@ -38,4 +37,3 @@ async function start() {
 }
 
 start();
- 

@@ -4,29 +4,36 @@ const PatientSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
-			// required: true,
+			required: true,
 		},
 		birthday: {
 			type: String,
-			// required: true,
+			required: true,
 		},
 		oms: {
 			type: Number,
+			unique: true,
+			required: true,
 		},
 		phone: {
 			type: String,
+			required: true,
 		},
 		from: {
 			type: String,
+			required: true,
 		},
 		research: {
 			type: String,
+			required: true,
 		},
 		researchdescription: {
 			type: String,
+			required: true,
 		},
 		doctor: {
 			type: String,
+			required: true,
 		},
 	},
 	{ timestamps: true }

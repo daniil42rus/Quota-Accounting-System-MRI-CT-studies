@@ -6,6 +6,24 @@ import jwt from 'jsonwebtoken';
 export const register = async (req, res) => {
 	try {
 		const { username, password, surname, access } = req.body;
+
+		if (!username || username.length < 2)
+			return res.json({
+				message: 'Заполните поле Логин',
+			});
+		if (!password || password.length < 5)
+			return res.json({
+				message: 'Заполните поле Пароль',
+			});
+		if (!surname || surname.length < 3)
+			return res.json({
+				message: 'Заполните полe ФИО',
+			});
+		if (!access )
+			return res.json({
+				message: 'Заполните полe Права',
+			});
+
 		const isUsed = await User.findOne({ username });
 
 		if (isUsed) {
@@ -24,19 +42,10 @@ export const register = async (req, res) => {
 			access,
 		});
 
-		// const token = jwt.sign(
-		//     {
-		//         id: newUser._id,
-		//     },
-		//     process.env.JWT_SECRET,
-		//     { expiresIn: '30d' },
-		// )
-
 		await newUser.save();
 
 		res.json({
 			newUser,
-			// token,
 			message: `Регистрация польхователя ${newUser.username} прошла успешно`,
 		});
 	} catch (error) {
@@ -136,13 +145,61 @@ export const removeUser = async (req, res) => {
 		const { _id } = req.body;
 
 		const user = await User.findByIdAndDelete({ _id });
+		// const user = await User.find({ _id });
 
 		if (!user)
 			return res.json({
 				message: 'Такого пользователя не существует',
 			});
-		res.json(user);
+		res.json({
+			message: `Пользователь ${user.surname} был удален`,
+		});
 	} catch (error) {
 		res.json({ message: 'Что то пошло не так.' });
+	}
+};
+
+// Update user
+export const updateUser = async (req, res) => {
+	try {
+		const { _id, username, password, surname, access } = req.body;
+
+		const salt = bcrypt.genSaltSync(10);
+		const hash = bcrypt.hashSync(password, salt);
+
+		if (!username || username.length < 2)
+			return res.json({
+				message: 'Заполните поле Логин',
+			});
+		if (!password || password.length < 5)
+			return res.json({
+				message: 'Заполните поле Пароль',
+			});
+		if (!surname || surname.length < 3)
+			return res.json({
+				message: 'Заполните полe ФИО',
+			});
+		const user = await User.findByIdAndUpdate(
+			{ _id },
+			{
+				$set: {
+					username: username,
+					password: hash,
+					surname: surname,
+					access: access,
+				},
+			}
+		);
+
+		if (!user)
+			return res.json({
+				message: 'Такого пользователя не существует',
+			});
+
+		// res.json({
+		// 	message: `Пользователь ${user.username} был обновлен`,
+		// });
+	} catch (error) {
+		res.json({ message: 'Что то пошло не так.' + error });
 	}
 };
