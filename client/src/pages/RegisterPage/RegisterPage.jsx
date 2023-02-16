@@ -15,7 +15,6 @@ export const RegisterPage = () => {
 
 	const { status } = useSelector((status) => status.auth);
 	const { allUsers } = useSelector((status) => status.auth);
-	// console.log(allUsers);
 
 	useEffect(() => {
 		if (status) {
@@ -25,21 +24,21 @@ export const RegisterPage = () => {
 
 	useEffect(() => {
 		dispatch(getAllUsers());
+
+		const interval = setInterval(() => {
+			dispatch(getAllUsers());
+		}, 1000);
+
+		return () => clearInterval(interval);
 	}, [dispatch]);
 
 	const handleSubmit = () => {
 		try {
 			dispatch(registerUser({ username, password, surname, access }));
-			setPassword('');
-			setUsername('');
-			setSurname('');
-			
-			document
-				.getElementById('disabled')
-				.removeAttribute('disabled', 'disabled');
-			setAccess('');
-
-			console.log(username, password, surname, access);
+			// setPassword('');
+			// setUsername('');
+			// setSurname('');
+			// setAccess('');
 		} catch (error) {
 			console.log(error);
 		}
@@ -55,11 +54,6 @@ export const RegisterPage = () => {
 			console.log(error);
 		}
 	};
-
-	const disableOption = () => {
-		document.getElementById('disabled').setAttribute('disabled', 'disabled');
-	};
-
 	return (
 		<div className="">
 			<h2 className={styles.heading}>Управление учетными записями</h2>
@@ -68,7 +62,9 @@ export const RegisterPage = () => {
 					<h3 className={styles.left__heading}>Список учетных записей</h3>
 					<div className={styles.box}>
 						<ul className={styles.user__list}>
-							{allUsers?.map((user, id) => (
+							{/* {setInterval(() => alert('tick'), 10000)} */}
+
+							{allUsers.map((user, id) => (
 								<UsersItem key={id} user={user} />
 							))}
 						</ul>
@@ -82,33 +78,42 @@ export const RegisterPage = () => {
 							<label className={styles.form__lable}>
 								<span className={styles.form__heading}>Логин</span>
 								<input
+									minLength={2}
+									maxLength={20}
 									type="text"
 									value={username}
 									onChange={(e) => setUsername(e.target.value)}
 									placeholder="g.petrova"
 									className={styles.form__imput}
+									required
 								/>
 							</label>
 
 							<label className={styles.form__lable}>
 								<span className={styles.form__heading}>Пароль</span>
 								<input
+									minLength={5}
+									maxLength={20}
 									type="password"
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
 									placeholder="********"
 									className={styles.form__imput}
+									required
 								/>
 							</label>
 
 							<label className={styles.form__lable}>
 								<span className={styles.form__heading}>ФИО</span>
 								<input
-									type="test"
+									minLength={3}
+									maxLength={50}
+									type="text"
 									value={surname}
 									onChange={(e) => setSurname(e.target.value)}
 									placeholder="Петрова Галина Владимировна"
 									className={styles.form__imput}
+									required
 								/>
 							</label>
 
@@ -116,36 +121,35 @@ export const RegisterPage = () => {
 								<span className={styles.form__heading}>Права</span>
 								<select
 									name="access"
-									type="test"
+									type="text"
 									value={access}
 									onChange={(e) => setAccess(e.target.value)}
-									onClick={disableOption}
-									// placeholder="Регистратор"
 									className={styles.form__imput}
+									required
 								>
-									<option id="disabled">Выбирите права</option>
-									<option>Администратор</option>
-									<option>Заведующий</option>
-									<option>Регистратор</option>
+									<option value="">Выбирите права</option>
+									<option value="Администратор">Администратор</option>
+									<option value="Регистратор">Регистратор</option>
+									<option value="Заведующий">Заведующий</option>
 								</select>
 							</label>
+							<div className={styles.form__btns}>
+								<button
+									type="submit"
+									onClick={handleEmpty}
+									className={styles.btn__delete}
+								>
+									Очистить форму
+								</button>
+								<button
+									type="submit"
+									onClick={handleSubmit}
+									className={styles.btn__save}
+								>
+									Сохранить
+								</button>
+							</div>
 						</form>
-						<div className={styles.form__btns}>
-							<button
-								type="submit"
-								onClick={handleEmpty}
-								className={styles.btn__delete}
-							>
-								Удалить
-							</button>
-							<button
-								type="submit"
-								onClick={handleSubmit}
-								className={styles.btn__save}
-							>
-								Сохранить
-							</button>
-						</div>
 					</div>
 				</div>
 			</div>

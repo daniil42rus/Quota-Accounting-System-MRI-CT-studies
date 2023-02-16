@@ -6,7 +6,7 @@ const initialState = {
 	token: null,
 	isLoading: false,
 	status: null,
-	allUsers:null,
+	allUsers: [],
 };
 
 export const registerUser = createAsyncThunk(
@@ -67,9 +67,24 @@ export const removeUser = createAsyncThunk(
 	async ({ _id }) => {
 		try {
 			const { data } = await axios.post(`/auth/register/removeUser`, { _id });
-			console.log({_id});
+			return data;
+		} catch (error) {
+			console.log(error);
+		}
+	}
+);
 
-
+export const updateUser = createAsyncThunk(
+	'auth/register/updateUser',
+	async ({ _id, username, password, surname, access }) => {
+		try {
+			const { data } = await axios.post('/auth/register/updateUser', {
+				_id,
+				username,
+				password,
+				surname,
+				access,
+			});
 			return data;
 		} catch (error) {
 			console.log(error);
@@ -97,12 +112,10 @@ export const authSlice = createSlice({
 		[registerUser.fulfilled]: (state, action) => {
 			state.isLoading = false;
 			state.status = action.payload.message;
-			// state.user = action.payload.user;
-			// state.token = action.payload.token;
 		},
 		[registerUser.rejectWithValue]: (state, action) => {
-			state.status = action.payload.message;
 			state.isLoading = false;
+			state.status = action.payload.message;
 		},
 		// Login user
 		[loginUser.pending]: (state) => {
@@ -153,15 +166,28 @@ export const authSlice = createSlice({
 		},
 		[removeUser.fulfilled]: (state, action) => {
 			state.isLoading = false;
-
-			// state.allUsers = state.allUsers.filter(
-			// 	(user) => user._id !== action.meta.arg
-			// );
-
-			console.log(state.allUsers);
+			state.status = action.payload.message;
+			state.allUsers = state.allUsers.filter(
+				(user) => user._id !== action.meta.arg._id
+			);
 		},
 		[removeUser.rejectWithValue]: (state, action) => {
 			state.isLoading = false;
+			state.status = action.payload.message;
+		},
+
+		// Обновить пользователя
+		[updateUser.pending]: (state) => {
+			state.isLoading = true;
+			state.status = null;
+		},
+		[updateUser.fulfilled]: (state, action) => {
+			state.isLoading = false;
+			state.status = action.payload.message;
+		},
+		[updateUser.rejectWithValue]: (state, action) => {
+			state.isLoading = false;
+			state.status = action.payload.message;
 		},
 	},
 });

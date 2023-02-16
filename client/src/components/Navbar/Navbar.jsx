@@ -9,7 +9,7 @@ import {
 
 import { toast } from 'react-toastify';
 import { Logo } from '../Logo/Logo';
-import style from './navbar.module.css';
+import styles from './navbar.module.css';
 
 export const Navbar = () => {
 	const isAuth = useSelector(checkIsAuth);
@@ -33,15 +33,15 @@ export const Navbar = () => {
 	return (
 		<div className="">
 			{isAuth && (
-				<header className={style.header}>
-					<NavLink to={'/'} href="/" className={style.logo}>
+				<header className={styles.header}>
+					<NavLink to={'/'} href="/" className={styles.logo}>
 						<Logo />
 					</NavLink>
 
-					<nav className={style.nav}>
-						<ul className={style.nav__list}>
+					<nav className={styles.nav}>
+						<ul className={styles.nav__list}>
 							{user.access === 'Администратор' && (
-								<li className={style.nav__item}>
+								<li className={styles.nav__item}>
 									<NavLink
 										to={'/register'}
 										href="/"
@@ -55,7 +55,7 @@ export const Navbar = () => {
 								</li>
 							)}
 
-							<li className={style.nav__item}>
+							<li className={styles.nav__item}>
 								<NavLink
 									to={'/'}
 									href="/"
@@ -67,7 +67,7 @@ export const Navbar = () => {
 									Записать пациента{' '}
 								</NavLink>
 							</li>
-							<li className={style.nav__item}>
+							<li className={styles.nav__item}>
 								<NavLink
 									to={'/'}
 									href="/"
@@ -79,7 +79,7 @@ export const Navbar = () => {
 									Создать расписание{' '}
 								</NavLink>
 							</li>
-							<li className={style.nav__item}>
+							<li className={styles.nav__item}>
 								<NavLink
 									to={'/'}
 									href="/"
@@ -91,7 +91,7 @@ export const Navbar = () => {
 									Добавть квоты{' '}
 								</NavLink>
 							</li>
-							<li className={style.nav__item}>
+							<li className={styles.nav__item}>
 								<NavLink
 									to={'/'}
 									href="/"
@@ -105,9 +105,9 @@ export const Navbar = () => {
 							</li>
 						</ul>
 					</nav>
-					<div className={style.nav__right}>
-						<div className={style.user}>
-							<span className={style.user__name}>
+					<div className={styles.nav__right}>
+						<div className={styles.user}>
+							<span className={styles.user__name}>
 								{user.surname
 									.split(/\s+/)
 									.map((w, i) =>
@@ -115,11 +115,11 @@ export const Navbar = () => {
 									)
 									.join(' ')}
 							</span>
-							<span className={style.user__access}>{user.access}</span>
+							<span className={styles.user__access}>{user.access}</span>
 						</div>
 
-						<button className={style.btn__exit} onClick={logoutHandler}>
-							<svg
+						<button className={styles.btn__exit} onClick={logoutHandler}>
+							{/* <svg
 								width="22"
 								height="22"
 								viewBox="0 0 22 22"
@@ -127,14 +127,14 @@ export const Navbar = () => {
 								xmlns="http://www.w3.org/2000/svg"
 							>
 								<path
-									className={style.btn__exit_path}
+									className={styles.btn__exit_path}
 									d="M16.5308 6.71428L21 11M21 11L16.5308 15.2857M21 11L7.15385 11M16.3846 21L4.07692 20.9971C2.37846 20.9957 1 19.7171 1 18.14L1 3.86143C1 3.10367 1.32418 2.37694 1.90121 1.84112C2.47825 1.30531 3.26087 1.00429 4.07692 1.00429L16.3846 1"
 									stroke="#4A3D52"
 									strokeWidth="1.5"
 									strokeLinecap="round"
 									strokeLinejoin="round"
 								/>
-							</svg>
+							</svg> */}
 						</button>
 					</div>
 				</header>

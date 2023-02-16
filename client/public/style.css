@@ -1,4 +1,8 @@
-body{
+* {
+    transition: .5s;
+}
+
+body {
     background-color: #fff;
 }
 
