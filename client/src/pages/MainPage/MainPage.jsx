@@ -2,21 +2,31 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import './calendar.css';
 import styles from './mainpage.module.css';
+import moment from 'moment';
+import 'moment/locale/ru';
+import { NavAside } from '../../components/NavAside/NavAside';
 
 export const MainPage = () => {
 	const [date, setDate] = useState(new Date());
 
 	const clickDay = () => {
-		let newDate = new Date();
 		let days = [];
+		let format = {
+			sameDay: 'DD.MM.YYYY',
+			nextDay: 'DD.MM.YYYY',
+			nextWeek: 'DD.MM.YYYY',
+			lastDay: 'DD.MM.YYYY',
+			lastWeek: 'DD.MM.YYYY',
+			sameElse: 'DD.MM.YYYY',
+		};
 
-		days.push(date.toLocaleDateString(newDate.setDate(date.getDate())));
-		days.push(date.toLocaleDateString(newDate.setDate(date.getDate() + 1)));
-		days.push(date.toLocaleDateString(newDate.setDate(date.getDate() + 2)));
-		days.push(date.toLocaleDateString(newDate.setDate(date.getDate() + 3)));
-		days.push(date.toLocaleDateString(newDate.setDate(date.getDate() + 4)));
-		days.push(date.toLocaleDateString(newDate.setDate(date.getDate() + 5)));
-		days.push(date.toLocaleDateString(newDate.setDate(date.getDate() + 6)));
+		days.push(moment(date).add(0, 'd').calendar(format));
+		days.push(moment(date).add(1, 'd').calendar(format));
+		days.push(moment(date).add(2, 'd').calendar(format));
+		days.push(moment(date).add(3, 'd').calendar(format));
+		days.push(moment(date).add(4, 'd').calendar(format));
+		days.push(moment(date).add(5, 'd').calendar(format));
+		days.push(moment(date).add(6, 'd').calendar(format));
 
 		return days;
 	};
@@ -104,7 +114,11 @@ export const MainPage = () => {
 				</ul>
 			</div>
 			<div className={styles.right}>
+				<h2 className={styles.right__heading}>
+					Сегодня {moment().format('LL')}
+				</h2>
 				<Calendar onChange={setDate} value={date} />
+				<NavAside />
 			</div>
 		</div>
 	);

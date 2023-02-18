@@ -81,21 +81,31 @@
     justify-content: flex-end;
 }
 
-.btn__delete {
+.btn__delete,
+.btn__save {
     padding: 12px 35px;
-    margin-right: 21px;
     background: #FAFAFA;
     border: 1px solid rgba(2, 50, 83, 0.5);
     border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(2, 50, 83, 0.5);
+    cursor: pointer;
 }
 
 .btn__save {
-    padding: 12px 35px;
-    background: #005691;
-    border: 1px solid rgba(2, 50, 83, 0.5);
-    border-radius: 10px;
-    color: #FCFCFC;
+    margin-right: 21px;
 }
+
+.btn__delete:hover,
+.btn__save:hover {
+    background: #005691;
+    color: #FAFAFA;
+}
+
+.btn__delete:active,
+.btn__save:active {
+  box-shadow: none;
+}
+
 
 .option__placeholder {
     margin: 100px;

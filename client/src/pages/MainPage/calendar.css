@@ -6,6 +6,7 @@
   background: #FAFAFA;
   border: 1px solid rgba(18, 112, 176, 0.1);
   border-radius: 20px;
+  margin-bottom: 20px;
 }
 
 .react-calendar--doubleView {
@@ -150,4 +151,9 @@
 
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
+}
+
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  display: none;
 }

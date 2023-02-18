@@ -10,6 +10,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { checkIsAuth, getMe } from './redux/features/auth/authSlice';
 import { NotFind } from './pages/NotFind/NotFind';
+import { CreateSchedulePage } from './pages/CreateSchedulePage/CreateSchedulePage';
+import { PatientRegisterPage } from './pages/PatientRegisterPage/PatientRegisterPage';
+import { AddQuotasPage } from './pages/AddQuotasPage/AddQuotasPage';
+import { ReportGeneratePage } from './pages/ReportGeneratePage/ReportGeneratePage';
 
 function App() {
 	const dispatch = useDispatch();
@@ -21,21 +25,23 @@ function App() {
 
 	return (
 		<Layout>
-			{
-				isAuth ? (
-					<Routes>
-						<Route path="/" element={<MainPage />} />
-						<Route path="register" element={<RegisterPage />} />
-						<Route path="login" element={<LoginPage />} />
-						<Route path="*" element={<NotFind />} />
-					</Routes>
-				) : (
-					<Routes>
-						<Route path="login" element={<LoginPage />} />
-						<Route path="*" element={<LoginPage />} />
-					</Routes>
-				)
-			}
+			{isAuth ? (
+				<Routes>
+					<Route path="/" element={<MainPage />} />
+					<Route path="register" element={<RegisterPage />} />
+					<Route path="patientregister" element={<PatientRegisterPage />} />
+					<Route path="createschedule" element={<CreateSchedulePage />} />
+					<Route path="addquotas" element={<AddQuotasPage />} />
+					<Route path="reportgenerate" element={<ReportGeneratePage />} />
+
+					<Route path="*" element={<NotFind />} />
+				</Routes>
+			) : (
+				<Routes>
+					<Route path="login" element={<LoginPage />} />
+					<Route path="*" element={<LoginPage />} />
+				</Routes>
+			)}
 			{/* <Routes>
 				<Route path="/" element={<MainPage />} />
 				<Route path="register" element={<RegisterPage />} />

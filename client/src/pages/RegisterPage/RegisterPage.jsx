@@ -136,17 +136,13 @@ export const RegisterPage = () => {
 							<div className={styles.form__btns}>
 								<button
 									type="submit"
-									onClick={handleEmpty}
-									className={styles.btn__delete}
-								>
-									Очистить форму
-								</button>
-								<button
-									type="submit"
 									onClick={handleSubmit}
 									className={styles.btn__save}
 								>
 									Сохранить
+								</button>
+								<button onClick={handleEmpty} className={styles.btn__delete}>
+									Очистить форму
 								</button>
 							</div>
 						</form>

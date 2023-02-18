@@ -18,10 +18,6 @@ export const Navbar = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const activeStyles = {
-		color: 'red',
-	};
-
 	const logoutHandler = () => {
 		dispatch(logout());
 		window.localStorage.removeItem('token');
@@ -38,73 +34,6 @@ export const Navbar = () => {
 						<Logo />
 					</NavLink>
 
-					<nav className={styles.nav}>
-						<ul className={styles.nav__list}>
-							{user.access === 'Администратор' && (
-								<li className={styles.nav__item}>
-									<NavLink
-										to={'/register'}
-										href="/"
-										className=""
-										style={({ isActive }) =>
-											isActive ? activeStyles : undefined
-										}
-									>
-										Управление учетными записями{' '}
-									</NavLink>
-								</li>
-							)}
-
-							<li className={styles.nav__item}>
-								<NavLink
-									to={'/'}
-									href="/"
-									className=""
-									style={({ isActive }) =>
-										isActive ? activeStyles : undefined
-									}
-								>
-									Записать пациента{' '}
-								</NavLink>
-							</li>
-							<li className={styles.nav__item}>
-								<NavLink
-									to={'/'}
-									href="/"
-									className=""
-									style={({ isActive }) =>
-										isActive ? activeStyles : undefined
-									}
-								>
-									Создать расписание{' '}
-								</NavLink>
-							</li>
-							<li className={styles.nav__item}>
-								<NavLink
-									to={'/'}
-									href="/"
-									className=""
-									style={({ isActive }) =>
-										isActive ? activeStyles : undefined
-									}
-								>
-									Добавть квоты{' '}
-								</NavLink>
-							</li>
-							<li className={styles.nav__item}>
-								<NavLink
-									to={'/'}
-									href="/"
-									className=""
-									style={({ isActive }) =>
-										isActive ? activeStyles : undefined
-									}
-								>
-									Сформировать отчет{' '}
-								</NavLink>
-							</li>
-						</ul>
-					</nav>
 					<div className={styles.nav__right}>
 						<div className={styles.user}>
 							<span className={styles.user__name}>
@@ -118,24 +47,10 @@ export const Navbar = () => {
 							<span className={styles.user__access}>{user.access}</span>
 						</div>
 
-						<button className={styles.btn__exit} onClick={logoutHandler}>
-							{/* <svg
-								width="22"
-								height="22"
-								viewBox="0 0 22 22"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									className={styles.btn__exit_path}
-									d="M16.5308 6.71428L21 11M21 11L16.5308 15.2857M21 11L7.15385 11M16.3846 21L4.07692 20.9971C2.37846 20.9957 1 19.7171 1 18.14L1 3.86143C1 3.10367 1.32418 2.37694 1.90121 1.84112C2.47825 1.30531 3.26087 1.00429 4.07692 1.00429L16.3846 1"
-									stroke="#4A3D52"
-									strokeWidth="1.5"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-							</svg> */}
-						</button>
+						<button
+							className={styles.btn__exit}
+							onClick={logoutHandler}
+						></button>
 					</div>
 				</header>
 			)}

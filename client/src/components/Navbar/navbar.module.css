@@ -6,9 +6,9 @@
     align-items: center;
 }
 
-.nav {
+/* .nav {
     width: 700px;
-}
+} */
 
 .nav__list {
     display: flex;

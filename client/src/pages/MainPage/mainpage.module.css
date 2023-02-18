@@ -9,10 +9,10 @@
 
 .right {
     flex: 0 0 19%
-
 }
 
-.left__heading {
+.left__heading,
+.right__heading {
     margin-bottom: 45px;
     font-weight: 400;
     font-size: 20px;
@@ -91,3 +91,4 @@
 .items__rec {
     margin-bottom: 5px;
 }
+
