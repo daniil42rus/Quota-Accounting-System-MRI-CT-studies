@@ -8,14 +8,20 @@ import authPatient from './routes/addPatient.js';
 const app = express();
 dotenv.config();
 
+//Constatns
 const URL = process.env.DB_URL;
-const URL_WEB = process.env.DB_URL_WEB;
 const DB_NAME = process.env.DB_NAME;
 const DB_PORT = process.env.DB_PORT || 3001;
 
+// app.get('/', (req,res) => {
+//     return res.json({message:'all good'})
+// })
+
+//Middleware
 app.use(cors());
 app.use(express.json());
 
+//Routes
 app.use('/api/auth', authRoute);
 app.use('/api/patient', authPatient);
 
