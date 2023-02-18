@@ -85,7 +85,6 @@ export const updateUser = createAsyncThunk(
 				surname,
 				access,
 			});
-
 			return data;
 		} catch (error) {
 			console.log(error);

@@ -3,7 +3,7 @@ import { checkIsAuth, loginUser } from '../../redux/features/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Logo } from '../../components/Logo/Logo';
+import {Logo} from '../../components/Logo/Logo'
 import styles from './loginpage.module.css';
 
 export const LoginPage = () => {
@@ -16,6 +16,11 @@ export const LoginPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	useEffect(() => {
+		if (status) toast(status);
+		if (isAuth) navigate('/');
+	}, [status, isAuth, navigate]);
+
 	const handleSubmit = () => {
 		try {
 			dispatch(loginUser({ username, password }));
@@ -24,18 +29,11 @@ export const LoginPage = () => {
 		}
 	};
 
-	useEffect(() => {
-		if (status) toast(status);
-		console.log(isAuth);
-
-		navigate('/');
-	}, [status, isAuth, navigate]);
-
 	return (
 		<main className={styles.main}>
 			<div className={styles.center}>
 				<div className={styles.right}>
-					<Logo />
+					<Logo/>
 					<form onSubmit={(e) => e.preventDefault()} className={styles.form}>
 						<h2 className={styles.form__heading}>Войти в систему</h2>
 						<label>
