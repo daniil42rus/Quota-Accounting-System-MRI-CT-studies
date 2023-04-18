@@ -9,6 +9,7 @@
 - Express
 - Jsonwebtoken
 - Mongoose
+- MongoDB
 - Socket.io
 - Nodemon
 
@@ -17,7 +18,7 @@
 - Reduxjs/toolkit
 - React - redux
 - Axios
-- React-toastify
-- React-calendar
+- React - toastify
+- React - calendar
 
 #### Проект не завершен
