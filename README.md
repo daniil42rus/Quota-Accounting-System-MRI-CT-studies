@@ -1,4 +1,4 @@
-# Quota-Accounting-System-MRI-CT-studies
+# Система учета квот МРТ/КТ исследований
 
 ## 🛠 Стэк:
 
@@ -13,7 +13,6 @@
 - Nodemon
 
 ### Frontend
-
 - React-router-dom
 - Reduxjs/toolkit
 - React - redux
@@ -21,3 +20,4 @@
 - React-toastify
 - React-calendar
 
+#### Проект не завершен
