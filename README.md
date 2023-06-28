@@ -10,7 +10,6 @@
 - Jsonwebtoken
 - Mongoose
 - MongoDB
-- Socket.io
 - Nodemon
 
 ### Frontend
